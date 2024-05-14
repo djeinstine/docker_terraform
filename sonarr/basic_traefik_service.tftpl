@@ -1,0 +1,12 @@
+http:
+  routers:
+    ${service}:
+      entryPoints:
+        - https
+      rule: "Host(`${hostname}.${domain_name}`)"
+      service: ${service}
+  services:
+    ${service}:
+      loadBalancer:
+        servers:
+          - url: "http://${docker_url}:${web_port}"
